@@ -18,6 +18,7 @@ function App() {
       
         <Route path="/" element={ <Home /> } Active/>
         <Route path="projects" element={<Projects/>}>
+          <Route index element={<Mern/>}/>
           <Route path="mern" element={<Mern/>}/>
           <Route path="android" element={<Android/>}/>
         </Route>
@@ -42,3 +43,6 @@ export default App;
 //no match route
 //nested routes: Switch to the portion of a page. Don't include / for nested routes
 //Outlet determines where to render the child component
+
+
+//Index Route. When u want to have the parent route but also render child route component
