@@ -23,6 +23,9 @@ const Navbar = () =>{
         <li>
             <NavLink to="/user/1"> User Details </NavLink>    
         </li>
+        <li>
+            <NavLink to="/formik"> Formik </NavLink>    
+        </li>
     
     </ul>
     </nav>

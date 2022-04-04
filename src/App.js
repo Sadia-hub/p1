@@ -10,6 +10,7 @@ import Mern from './components/mern';
 import Android from './components/Android';
 import UserDetail from './components/UserDetail';
 import SearchParams from './components/SearchParams';
+import FormikTutorial from './components/FormikTutorial';
 function App() {
   return (
     <div className="App">
@@ -29,6 +30,7 @@ function App() {
         <Route path="resume" element={<Resume/>}/>
         <Route path="user/:userId" element={<UserDetail />}/>
         <Route path="search" element={<SearchParams/>}/>
+        <Route path="formik" element={<FormikTutorial/>}/>
 
         <Route path='*' element={<Page404 />} />
         
@@ -47,6 +49,9 @@ export default App;
 //no match route
 //nested routes: Switch to the portion of a page. Don't include / for nested routes
 //Outlet determines where to render the child component
+
+//relative links append to the current url. We donot add / to the relative link
+//absolute links do not append. We add / to the absolute link
 
 
 //Index Route. When u want to have the parent route but also render child route component
