@@ -6,6 +6,8 @@ import Resume from './components/Resume';
 import Projects from './components/Projects';
 import Page404 from './components/Page404';
 import Navbar from './components/Navbar';
+import Mern from './components/mern';
+import Android from './components/Android';
 function App() {
   return (
     <div className="App">
@@ -15,7 +17,10 @@ function App() {
       <Routes>
       
         <Route path="/" element={ <Home /> } Active/>
-        <Route path="projects" element={<Projects/>}/>
+        <Route path="projects" element={<Projects/>}>
+          <Route path="mern" element={<Mern/>}/>
+          <Route path="android" element={<Android/>}/>
+        </Route>
         
         <Route path="contact" element={<Contact/>}/>
         <Route path="resume" element={<Resume/>}/>
@@ -35,3 +40,5 @@ export default App;
 //Navlink
 //Navigating Programmatically
 //no match route
+//nested routes: Switch to the portion of a page. Don't include / for nested routes
+//Outlet determines where to render the child component
