@@ -1,20 +1,21 @@
 import styles from '../navbar.module.css'
-import { Link } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 
 const Navbar = () =>{
     return<nav>
-    <ul style={{listStyle:"none", display:"flex", marginInline:20, alignItems:"center",justifyContent:"center", textDecoration:"none"}}>
-        <li style={{margin:10, textDecoration:"none"}}>
-            <Link to="/"> Home </Link>           
+    <ul>
+        <li>
+            {/* It can detect active links automatically unlike Links. You can add extra styling based on a.active */}
+            <NavLink to="/"> Home </NavLink>           
         </li>
-        <li style={{margin:10}}>
-            <Link to="/projects"> Projects </Link>    
+        <li>
+            <NavLink to="/projects"> Projects </NavLink>    
         </li>
-        <li style={{margin:10}}>
-            <Link to="/resume"> Download Resume </Link>    
+        <li>
+            <NavLink to="/resume"> Download Resume </NavLink>    
         </li>
-        <li style={{margin:10}}>
-            <Link to="/contact"> Contacts </Link>    
+        <li>
+            <NavLink to="/contact"> Contacts </NavLink>    
         </li>
     
     </ul>

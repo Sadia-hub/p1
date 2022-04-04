@@ -11,3 +11,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+nav{
+  margin-top: 0;
+  height: 3rem;
+  background-color: antiquewhite;
+}
+
+nav ul {
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  
+}
+
+ul li a{
+  text-decoration: none;
+  font-weight: bolder;
+  color: black;
+  margin-right: 2rem;
+}
+
+
+ul li a.active{
+  text-decoration: none;
+  font-weight: bolder;
+  color: brown;
+}
