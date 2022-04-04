@@ -1,5 +1,14 @@
-import {ErrorMessage, useFormik} from 'formik';
+import {useFormik} from 'formik';
+import * as yup from 'yup';
 const FormikTutorial = () =>{
+
+
+    const validationSchema = yup.object({
+        name:yup.String().required("required"),
+        email:yup.String().email('Invalid Format').required("Required"),
+        channel:yup.String().required("Required")
+    });
+
     //managing state:
     //step 1: add initial values of each field. Object keys should be similar to name props of form
     //step 2: add onchange and value prop in each element of the form
@@ -12,22 +21,7 @@ const FormikTutorial = () =>{
         onSubmit:values=>{
             console.log("form data: ",values);
         },
-        validate:values=>{
-
-            let errors={};
-
-            const {name, email, channel} = values;
-            if(!name){
-                errors.name="required"
-            }
-            if(!email){
-                errors.email="required"
-            }
-            if(!channel){
-                errors.channel="required"
-            }
-            return errors;
-        }
+        validationSchema
     });
 
     // console.log("Formik: ", formik.values);
