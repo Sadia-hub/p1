@@ -8,6 +8,7 @@ import Page404 from './components/Page404';
 import Navbar from './components/Navbar';
 import Mern from './components/mern';
 import Android from './components/Android';
+import UserDetail from './components/UserDetail';
 function App() {
   return (
     <div className="App">
@@ -25,6 +26,7 @@ function App() {
         
         <Route path="contact" element={<Contact/>}/>
         <Route path="resume" element={<Resume/>}/>
+        <Route path="user/:userId" element={<UserDetail />}/>
 
         <Route path='*' element={<Page404 />} />
         
