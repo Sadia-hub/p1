@@ -1,12 +1,12 @@
 import {useFormik} from 'formik';
-import * as yup from 'yup';
+import * as Yup from 'yup';
 const FormikTutorial = () =>{
 
 
-    const validationSchema = yup.object({
-        name:yup.String().required("required"),
-        email:yup.String().email('Invalid Format').required("Required"),
-        channel:yup.String().required("Required")
+    const validationSchema = Yup.object({
+        name:Yup.string().required("required"),
+        email:Yup.string().email('Invalid Format').required("Required"),
+        channel:Yup.string().required("Required")
     });
 
     //managing state:

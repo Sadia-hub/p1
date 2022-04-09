@@ -11,10 +11,12 @@ import Android from './components/Android';
 import UserDetail from './components/UserDetail';
 import SearchParams from './components/SearchParams';
 import FormikTutorial from './components/FormikTutorial';
+import Counter from './components/Counter';
 function App() {
   return (
     <div className="App">
       <Navbar/>
+      <Counter/>
       
        {/* ensure that only one component is rendered at a time */}
       <Routes>
