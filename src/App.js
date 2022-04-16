@@ -1,44 +1,10 @@
 import './App.css';
-import {Routes, Route} from 'react-router-dom';
-import Home from './components/Home';
-import Contact from './components/Contact';
-import Resume from './components/Resume';
-import Projects from './components/Projects';
-import Page404 from './components/Page404';
-import Navbar from './components/Navbar';
-import Mern from './components/mern';
-import Android from './components/Android';
-import UserDetail from './components/UserDetail';
-import SearchParams from './components/SearchParams';
-import FormikTutorial from './components/FormikTutorial';
-import Counter from './components/Counter';
+
+import CounterRedux from './components/CounterRedux';
 function App() {
   return (
     <div className="App">
-      <Navbar/>
-      <Counter/>
-      
-       {/* ensure that only one component is rendered at a time */}
-      <Routes>
-      
-        <Route path="/" element={ <Home /> } Active/>
-        <Route path="projects" element={<Projects/>}>
-          <Route index element={<Mern/>}/>
-          <Route path="mern" element={<Mern/>}/>
-          <Route path="android" element={<Android/>}/>
-        </Route>
-        
-        <Route path="contact" element={<Contact/>}/>
-        <Route path="resume" element={<Resume/>}/>
-        <Route path="user/:userId" element={<UserDetail />}/>
-        <Route path="search" element={<SearchParams/>}/>
-        <Route path="formik" element={<FormikTutorial/>}/>
-
-        <Route path='*' element={<Page404 />} />
-        
-      </Routes>
-      
-     
+      <CounterRedux/>
     </div>
   );
 }
