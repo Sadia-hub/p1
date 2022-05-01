@@ -14,3 +14,5 @@ const Home = () =>{
 }
 
 export default Home;
+
+//if you pass navigate(-1), then it will go back to the previou screen;
