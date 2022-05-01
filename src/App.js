@@ -12,9 +12,9 @@ function App() {
        {/* ensure that only one component is rendered at a time */}
       <Routes>
         <Route path="/" element={ <Home /> }/>
-        <Route path="/projects" element={<Projects/>}/>
-        <Route path="/contact" element={<Contact/>}/>
-        <Route path="/resume" element={<Resume/>}/>
+        <Route path="projects" element={<Projects/>}/>
+        <Route path="contact" element={<Contact/>}/>
+        <Route path="resume" element={<Resume/>}/>
 
       </Routes>
      

@@ -8,6 +8,7 @@ import {BrowserRouter} from 'react-router-dom'
 
 ReactDOM.render(
   // It's the component that does all the logic of displaying various components that you provide it with.
+  
   //connect app with browser url
   <BrowserRouter>
     <App />
