@@ -17,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={ <Home /> }/>
         <Route path="projects" element={<Projects/>}>
+          <Route index element={<React/>} />
           <Route path="react" element={<React/>}/>
           <Route path="android" element={<Android/>}/>
         </Route>
@@ -33,4 +34,5 @@ function App() {
 export default App;
 
 
-// when no route matches
+// index route
+//url will be same but one default component would already be rendered in the nested routes
