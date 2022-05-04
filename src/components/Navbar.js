@@ -26,6 +26,9 @@ const Navbar = () =>{
         <li>
             <NavLink to="/formik"> Formik </NavLink>    
         </li>
+        <li>
+            <NavLink to="/about"> Lazy About </NavLink>    
+        </li>
     
     </ul>
     </nav>

@@ -23,7 +23,7 @@ const SearchParams = () =>{
     <br/>
     
     {
-        users.map((user)=>{
+        users.map((user,i)=>{
             const {name, age} = user;
             if(ageParams==12 && age>12){
                 console.log(ageParams);

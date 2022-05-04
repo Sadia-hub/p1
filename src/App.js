@@ -11,6 +11,10 @@ import Android from './components/Android';
 import UserDetail from './components/UserDetail';
 import SearchParams from './components/SearchParams';
 import FormikTutorial from './components/FormikTutorial';
+import React from 'react';
+
+const LazyAbout = React.lazy(()=>import('./components/LazyAbout'));
+
 function App() {
   return (
     <div className="App">
@@ -31,6 +35,11 @@ function App() {
         <Route path="user/:userId" element={<UserDetail />}/>
         <Route path="search" element={<SearchParams/>}/>
         <Route path="formik" element={<FormikTutorial/>}/>
+        <Route path="about" element={
+        <React.Suspense fallback="Lading...">
+              <LazyAbout/>
+        </React.Suspense>}
+        />
 
         <Route path='*' element={<Page404 />} />
         
