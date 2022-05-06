@@ -1,10 +1,16 @@
 import './App.css';
 
-import CounterRedux from './components/CounterRedux';
 function App() {
   return (
     <div className="App">
-      <CounterRedux/>
+      <h1>Redux</h1>
+      <h2>Three Main Concepts</h2>
+      <h2>Store</h2>
+      <h3>Hold State of your Application</h3>
+      <h2>Action</h2>
+      <h3>describes what happened in the application</h3>
+      <h2>Reducer</h2>
+      <h3>Handles the action, and decides how to update the state</h3>
     </div>
   );
 }
@@ -12,14 +18,3 @@ function App() {
 export default App;
 
 
-//Navlink
-//Navigating Programmatically
-//no match route
-//nested routes: Switch to the portion of a page. Don't include / for nested routes
-//Outlet determines where to render the child component
-
-//relative links append to the current url. We donot add / to the relative link
-//absolute links do not append. We add / to the absolute link
-
-
-//Index Route. When u want to have the parent route but also render child route component
