@@ -1,32 +1,29 @@
 import './App.css';
-import ClickCounter from './components/ClickCounter';
-import CounterRenderProp from './components/CounterRenderProp';
-import HoverCounter from './components/HoverCounter';
+import React, { createContext } from 'react';
+import A from './components/A';
+
+const userContext = createContext();
 
 function App() {
   return (
     <div className="App">
-      <h1>Render Props</h1>
-      <h5>A technique for sharing code between React Components using a prop whose value is a function</h5>
+      <h1>Use Context Hook</h1>
+      <h5>A technique to pass data through the component tree without having to pass props down manually at each level</h5>
 
-      <CounterRenderProp
-      render={(count, increment)=>{
-          return <ClickCounter count={count} increment={increment}/>
-      }}
-      />
+      <h5>It can be through context API as well. But it has higher code complexity. So, use context hook helps in simplifying the code</h5>
 
-    <CounterRenderProp
-      render={(count, increment)=>{
-          return <HoverCounter count={count} increment={increment}/>
-      }}
-      />
+      <h5>In use Context, context creation and provision remains the same. It just changes the way of context consumption</h5>
+
+
+        <userContext.Provider value="Sadia">
+          <A />
+        </userContext.Provider>
 
     </div>
   );
 }
 
 export default App;
+export {userContext};
 
 
-//if you to pass props to Counter, they will be passed to HOC. 
-//SO use spread operator in HOC to pass them to Original Component
