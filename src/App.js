@@ -1,13 +1,11 @@
 import './App.css';
-import Counter from './components/Counter';
-import HoverCounter from './components/HoverCounter';
+
 
 function App() {
   return (
     <div className="App">
-      <h1>Higher Order Components</h1>
-     <Counter name="Sadia"/>
-     <HoverCounter/>
+      <h1>Render Props</h1>
+      <h5>A technique for sharing code between React Components using a prop whose value is a function</h5>
     </div>
   );
 }
