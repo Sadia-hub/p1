@@ -3,6 +3,7 @@ const createStore = redux.createStore;
 //alternative way to dispatch actions is bind action creators. However, it's an old technique. Not necessary these
 //days
 const bindActionCreators = redux.bindActionCreators
+const combineReducers = redux.combineReducers
 
 
 
@@ -89,7 +90,12 @@ const iceCreamReducer = (state=initialIceCreamState,action)=>{
     }
 }
 
-const store=createStore(cakeReducer);
+const rootReducer = combineReducers({
+    cake:cakeReducer,
+    iceCream:iceCreamReducer
+});
+
+const store=createStore(rootReducer);
 
 console.log("INITIAL STATE", store.getState());
 
@@ -102,10 +108,15 @@ const unsubscribe = store.subscribe(()=>{
 // store.dispatch(orderCake())
 // store.dispatch(restockCake(3))
 
-const actions = bindActionCreators({orderCake,restockCake},store.dispatch)
+const actions = bindActionCreators({orderCake,restockCake, orderIceCream, restockIceCream},store.dispatch)
 actions.orderCake();
 actions.orderCake();
 actions.orderCake();
 actions.restockCake(3);
+
+actions.orderIceCream();
+actions.orderIceCream();
+actions.orderIceCream();
+actions.restockIceCream(3);
 
 unsubscribe()
