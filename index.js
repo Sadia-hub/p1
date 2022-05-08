@@ -1,18 +1,22 @@
-// import { configure } from "@testing-library/react";
-// import { createStore, Store } from "redux";
-
 const redux=require('redux');
-
 const createStore = redux.createStore;
 
 
 const CAKE_ORDERED = "CAKE_ORDERED";
+const CAKE_RESTOCKED = "CAKE_RESTOCKED";
 
 //define action creator
 const orderCake = ()=>{
     return {
         type:CAKE_ORDERED,
-        quantity:1
+        payload:1
+    }
+}
+
+const restockCake = (qty=1)=>{
+    return {
+        type:CAKE_RESTOCKED,
+        payload:qty
     }
 }
 
@@ -30,6 +34,11 @@ const reducer = (state=initialState, action) =>{
                 ...state,
                 noOfCakes:state.noOfCakes-1
             }
+        case CAKE_RESTOCKED:
+            return{
+                ...state,
+                noOfCakes:state.noOfCakes+action.payload
+            }
         default:
             return state
     }
@@ -46,5 +55,6 @@ const unsubscribe = store.subscribe(()=>{
 store.dispatch(orderCake())
 store.dispatch(orderCake())
 store.dispatch(orderCake())
+store.dispatch(restockCake(3))
 
 unsubscribe()
