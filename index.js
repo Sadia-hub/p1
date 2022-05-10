@@ -1,126 +1,85 @@
-const redux=require('redux');
-const createStore = redux.createStore;
-//alternative way to dispatch actions is bind action creators. However, it's an old technique. Not necessary these
-//days
-const bindActionCreators = redux.bindActionCreators
-const combineReducers = redux.combineReducers
-
-//for extending functionality in redux. We use a middleware logger
-const reduxLogger = require("redux-logger")
-const logger = reduxLogger.createLogger();
-//pass this middle ware in create store. Now you can remove console statements. 
-//Logger Middleware will handle them all
-const applyMiddleware = redux.applyMiddleware;
-
-
-const CAKE_ORDERED = "CAKE_ORDERED";
-const CAKE_RESTOCKED = "CAKE_RESTOCKED";
-//adding other two actions
-const ICE_CREAM_ORDERED = "ICE_CREAM_ORDERED";
-const ICE_CREAM_RESTOCKED = "ICE_CREAM_RESTOCKED";
+const redux = require('redux')
+const createStore = redux.createStore
 
 
 
-//define action creator
-const orderCake = ()=>{
+
+
+const initialState= {
+    loading:false,
+    users:[],
+    error:''
+}
+
+
+//actions
+
+//if data is still fetching loading should be true
+const FETCH_USERS_REQUEST = 'FETCH_USERS_REQUEST';
+
+//this action depends upon the "FETCH_USERS_REQUEST" 
+//if data loaded successfully, 
+//1. loading should be false, 
+//2. return data that is fetched
+//3. clear error message
+const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS';
+
+////this action depends upon the "FETCH_USERS_REQUEST" 
+//if data could not load successfully
+//1. Set loading to false
+//2. return empty users list 
+//3. set error message
+const FETCH_USERS_FAILTURE = 'FETCH_USERS_FAILURE';
+
+
+//action creators
+const fetchUsersRequest = () =>{
     return {
-        type:CAKE_ORDERED,
-        payload:1
+        type:FETCH_USERS_REQUEST
     }
 }
 
-const restockCake = (qty=1)=>{
+const fetchUsersSuccess = users =>{
     return {
-        type:CAKE_RESTOCKED,
-        payload:qty
+        type:FETCH_USERS_SUCCESS,
+        payload:users
     }
 }
 
-const orderIceCream = () =>{
+const fetchUsersFailure = errorMessage =>{
     return {
-        type:ICE_CREAM_ORDERED,
-        payload:1
+        type:FETCH_USERS_FAILTURE,
+        payload:errorMessage
     }
 }
 
-const restockIceCream = (qty)=>{
-    return {
-        type:ICE_CREAM_RESTOCKED,
-        payload:qty
-    }
-}
 
-//define state
-const initialCakeState = {
-    noOfCakes:10,
-    otherProperties:10
-}
+//reducers
 
-const initialIceCreamState = {
-    noOfIceCreams:10
-}
-
-//define cake reducer
-const cakeReducer = (state=initialCakeState, action) =>{
+const reducer = (state = initialState, action) =>{
     switch(action.type){
-        case CAKE_ORDERED:
+        case FETCH_USERS_REQUEST:
             return{
                 ...state,
-                noOfCakes:state.noOfCakes-1
+                loading:true
             }
-        case CAKE_RESTOCKED:
+        case FETCH_USERS_SUCCESS:
             return{
                 ...state,
-                noOfCakes:state.noOfCakes+action.payload
+                loading:false,
+                users:action.payload,
+                error:''
+            }
+        case FETCH_USERS_FAILTURE:
+            return {
+                ...state,
+                loading:false,
+                user:[],
+                error:action.payload
             }
         default:
-            return state
+            return state;
     }
 }
 
-//ice cream reducer
-const iceCreamReducer = (state=initialIceCreamState,action)=>{
-    switch(action.type){
-        case ICE_CREAM_ORDERED:
-            return{
-                ...state,
-                noOfIceCreams:state.noOfIceCreams-1
-            }
-        case ICE_CREAM_RESTOCKED:
-            return{
-                ...state,
-                noOfIceCreams:state.noOfIceCreams+action.payload
-            }
-        default:
-            return state
-    }
-}
-
-const rootReducer = combineReducers({
-    cake:cakeReducer,
-    iceCream:iceCreamReducer
-});
-
-const store=createStore(rootReducer, applyMiddleware(logger));
-
-console.log("INITIAL STATE", store.getState());
-
-const unsubscribe = store.subscribe(()=>{})
-
-// store.dispatch(orderCake())
-// store.dispatch(orderCake())
-// store.dispatch(orderCake())
-// store.dispatch(restockCake(3))
-
-const actions = bindActionCreators({orderCake,restockCake, orderIceCream, restockIceCream},store.dispatch)
-actions.orderCake();
-actions.orderCake();
-actions.orderCake();
-actions.restockCake(3);
-
-actions.orderIceCream();
-actions.orderIceCream();
-actions.orderIceCream();
-actions.restockIceCream(3);
-
-unsubscribe()
+const store = createStore(reducer);
