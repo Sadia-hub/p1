@@ -5,6 +5,12 @@ const createStore = redux.createStore;
 const bindActionCreators = redux.bindActionCreators
 const combineReducers = redux.combineReducers
 
+//for extending functionality in redux. We use a middleware logger
+const reduxLogger = require("redux-logger")
+const logger = reduxLogger.createLogger();
+//pass this middle ware in create store. Now you can remove console statements. 
+//Logger Middleware will handle them all
+const applyMiddleware = redux.applyMiddleware;
 
 
 const CAKE_ORDERED = "CAKE_ORDERED";
@@ -95,13 +101,11 @@ const rootReducer = combineReducers({
     iceCream:iceCreamReducer
 });
 
-const store=createStore(rootReducer);
+const store=createStore(rootReducer, applyMiddleware(logger));
 
 console.log("INITIAL STATE", store.getState());
 
-const unsubscribe = store.subscribe(()=>{
-    console.log("Updated state: ",store.getState())
-})
+const unsubscribe = store.subscribe(()=>{})
 
 // store.dispatch(orderCake())
 // store.dispatch(orderCake())
