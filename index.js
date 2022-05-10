@@ -1,9 +1,13 @@
 const redux = require('redux')
 const createStore = redux.createStore
 
+// we need two pkgs 
+//1. axios for requests to an API endpoint
+//2. redux-thunk to define async action creators
 
-
-
+const applyMiddleware = redux.applyMiddleware;
+const thunkMiddleware = require('redux-thunk').default
+const axios = require('axios')
 
 const initialState= {
     loading:false,
@@ -53,6 +57,30 @@ const fetchUsersFailure = errorMessage =>{
     }
 }
 
+//define async action creator
+//normally action creator returns an object. 
+//But thunk allows action creators to return a function
+
+
+// best thing about this function is that it doesnot need to be pure.
+//it can perform async function calls
+const fetchUsers = () =>{
+    return function(dispatch){
+
+        dispatch(fetchUsersRequest())
+
+        axios.get('https://jsonplaceholder.typicode.com/users')
+        .then((response)=>{
+            const users = response.data.map((user)=>user.id);
+            dispatch(fetchUsersSuccess(users))
+        })
+        .catch((error)=>{
+            dispatch(fetchUsersFailure(error.message))
+        })
+        
+    }
+}
+
 
 //reducers
 
@@ -82,4 +110,7 @@ const reducer = (state = initialState, action) =>{
     }
 }
 
-const store = createStore(reducer);
+
+const store = createStore(reducer, applyMiddleware(thunkMiddleware));
+store.subscribe(()=>{console.log(store.getState())});
+store.dispatch(fetchUsers())
