@@ -1,7 +1,7 @@
 import './App.css';
 import React, { createContext } from 'react';
+import Counter from './Counter';
 
-const userContext = createContext();
 
 function App() {
   return (
@@ -10,6 +10,8 @@ function App() {
 
       <h4>Alternative to use state. It is a state manaement tool</h4>
       <h4>Use State is built using Use Reducer</h4>
+
+      <Counter />
 
     </div>
   );
