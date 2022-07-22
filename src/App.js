@@ -3,6 +3,9 @@ import ClickCounter from './components/ClickCounter';
 import CounterRenderProp from './components/CounterRenderProp';
 import HoverCounter from './components/HoverCounter';
 
+
+
+
 function App() {
   return (
     <div className="App">
@@ -20,6 +23,9 @@ function App() {
           return <HoverCounter count={count} increment={increment}/>
       }}
       />
+
+
+    
 
     </div>
   );
