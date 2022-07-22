@@ -1,47 +1,26 @@
 import './App.css';
-import React, { createContext, useReducer } from 'react';
-import Counter from './Counter';
-import A from './components/A';
-import B from './components/B';
-
-const initialState = {
-  count:0
-}
-
-const reducer = (state, action) =>{
-  switch(action.type){
-      case 'INCREMENT':
-          return {...state, count:state.count+action.payload}
-      case 'DECREMENT':
-          return {...state, count:state.count-action.payload}
-      default:
-          return state
-  }
-} 
-const userContext = createContext();
+import React, { useRef, useEffect } from 'react';
+import InputComponent from './components/InputComponent';
 function App() {
 
-  const [state, dispatch] = useReducer(reducer, initialState)
-
-  
-
+  const inputRef = useRef()
+  useEffect(()=>{
+    inputRef.current.focus()
+  },[])
   return (
     <div className="App">
-      <h1>Use Reducer Hook with useContext</h1>
+      <h1>Use Ref</h1>
 
-      <h4>Counter Value is shared across two components A and B</h4>
+      <h4>Access DOM nodes directly into functional components</h4>
+      <h2>E1: Asap page loads we need input field be focused</h2>
       
-
-      <userContext.Provider value={{count: state.count, counterDispatch:dispatch}}>
-        <A />
-        <B />
-      </userContext.Provider>
-
+      <input type="text" ref={inputRef} />
+      
     </div>
   );
 }
 
 export default App;
 
-export {userContext}
+
 
