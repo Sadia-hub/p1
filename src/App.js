@@ -1,6 +1,5 @@
 import './App.css';
 import React, { createContext, useReducer } from 'react';
-import Counter from './Counter';
 import A from './components/A';
 import B from './components/B';
 
